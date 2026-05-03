@@ -1,12 +1,20 @@
 {
-  "name": "node",
+  "name": "node-demo",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "author": "Naoman Saeed",
+  "license": "MIT",
+  "description": "a dataset of planet's most interesting places",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naomansaeed/node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naomansaeed/node/issues"
+  },
+  "homepage": "https://github.com/naomansaeed/node#readme"
 }

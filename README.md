@@ -20,3 +20,15 @@ node 01-minimal-server.js
 
 # Test with curl
 curl http://localhost:3000
+
+## Project Defaults
+
+name: wild-horizons
+version: default
+description: a dataset of planet's most interesting places
+entrypoint: server.js
+test command: default
+git repository: default
+keywords: default
+author: Naoman Saeed
+license: mit
