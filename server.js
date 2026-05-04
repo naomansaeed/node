@@ -19,6 +19,8 @@ const server = http.createServer(async (req, res) => {
         //res.end(JSON.stringify(animal));
         //res.write();
         //res.end('This is from server.');
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/json');
         res.end(JSON.stringify(destinations));
     }
     
