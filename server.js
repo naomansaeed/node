@@ -1,5 +1,6 @@
 import http from 'node:http';
 import { getDataFromDB } from './db.js';
+import { error } from 'node:console';
 //import { data } from './data/data';
 
 const PORT = 8000;
@@ -22,6 +23,11 @@ const server = http.createServer(async (req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type','application/json');
         res.end(JSON.stringify(destinations));
+    }
+    else{
+        res.setHeader('Content-Type','application/json');
+        res.statusCode = 404;
+        res.end(JSON.stringify({error:"not found", message: "The requested route does not exist"}));
     }
     
 })
