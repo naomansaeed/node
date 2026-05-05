@@ -2,6 +2,7 @@ import http from 'node:http';
 import { getDataFromDB } from './database/db.js';
 import { error } from 'node:console';
 import { sendJSONResponse } from './utils/sendJSONResponse.js';
+import { getDataByPathParams } from './utils/getDataByPathParams.js';
 //import { data } from './data/data';
 
 const PORT = 8000;
@@ -30,9 +31,12 @@ const server = http.createServer(async (req, res) => {
     }
     else if(req.url.startsWith('/api/continent') && req.method === 'GET') {
         const continent = req.url.split('/').pop();
-        const filteredData = destinations.filter((destination) => {
+
+        const filteredData = getDataByPathParams(destinations, 'continent', continent);
+       
+        /* destinations.filter((destination) => {
             return destination.continent.toLowerCase() === continent.toLowerCase();
-        });
+        }); */
         
         //res.statusCode = 200;
         //res.setHeader('Content-Type','application/json');
@@ -40,6 +44,18 @@ const server = http.createServer(async (req, res) => {
 
         sendJSONResponse(res, 200, filteredData);
     }
+
+    else if (req.url.startsWith('/api/country') && req.method === 'GET') {
+        const country = req.url.split('/').pop();
+        const filteredData = getDataByPathParams(destinations, 'country', country);
+        
+       /* destinations.filter((destination) => {
+            return destination.country.toLowerCase() === country.toLowerCase();
+        }); */
+
+        sendJSONResponse(res, 200, filteredData);
+    }
+
     else{
         
         //res.setHeader('Content-Type','application/json');
