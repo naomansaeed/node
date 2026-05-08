@@ -3,6 +3,7 @@ import { getDataFromDB } from './database/db.js';
 import { error } from 'node:console';
 import { sendJSONResponse } from './utils/sendJSONResponse.js';
 import { getDataByPathParams } from './utils/getDataByPathParams.js';
+import {getDataByQueryParams} from './utils/getDataByQueryParams.js';
 //import { data } from './data/data';
 
 const PORT = 8000;
@@ -12,12 +13,16 @@ const animal = {
     type: "mammel",
     species: "elephant"
 } */
-
-
+ 
 
 const server = http.createServer(async (req, res) => {
     const destinations = await getDataFromDB();
-    if (req.url === '/api' && req.method === 'GET') {
+
+    const urlObj = new URL(req.url, `http://${req.headers.host}`);
+    const queryObj = Object.fromEntries(urlObj.searchParams);  
+
+    //if (req.url === '/api' && req.method === 'GET') {
+    if (urlObj.pathname ==='/api' && req.method === 'GET') {
         
         //console.log(JSON.stringify(animal));
         //res.end(JSON.stringify(animal));
@@ -27,7 +32,23 @@ const server = http.createServer(async (req, res) => {
         //res.setHeader('Content-Type','application/json');
         //res.end(JSON.stringify(destinations));
 
-        sendJSONResponse(res, 200, destinations);
+        //---Challenge---
+        /* 
+        - Update filteredData so it only hold the objects the client wants
+        based on query parameters. If client doesn't use any query parameters,
+        serve all of the data
+        - The query params to be accepted curretly are:
+          'country', 'continent', & 'is_open_to_public'.
+        - Keep the code tidy by doing the filtering in a util function
+        */
+
+        //let filteredDestinations = destinations;
+
+        const filteredData = getDataByQueryParams(destinations, queryObj);
+
+        //console.log(queryObj);
+
+        sendJSONResponse(res, 200, filteredData);
     }
     else if(req.url.startsWith('/api/continent') && req.method === 'GET') {
         const continent = req.url.split('/').pop();
