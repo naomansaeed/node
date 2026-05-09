@@ -4,11 +4,11 @@ A structured, step-by-step learning repository for mastering vanilla Node.js HTT
 
 ## 📌 Progress Tracker
 - [x] `01-minimal-server.js` → Creating a server with `http.createServer()`
-- [ ] `02-status-codes-headers.js` → Setting HTTP status codes & response headers
-- [ ] `03-req-res-lifecycle.js` → Handling request methods & streaming responses
-- [ ] `04-query-params.js` → Extracting & validating URL query parameters
+- [x] `02-status-codes-headers.js` → Setting HTTP status codes & response headers
+- [x] `03-req-res-lifecycle.js` → Handling request methods & streaming responses
+- [x] `04-query-params.js` → Extracting & validating URL query parameters
 - [ ] `05-filtering-data.js` → Applying array methods to filter mock datasets
-- [ ] `06-routing-challenge.js` → Multi-endpoint routing with path matching
+- [x] `06-routing-challenge.js` → Multi-endpoint routing with path matching
 
 ## 🚀 How to Run Any Lesson
 ```bash
@@ -32,3 +32,10 @@ curl http://localhost:3000
 - keywords: default
 - author: Naoman Saeed
 - license: mit
+
+## Possible Stretch Goals
+
+- Gentler error handling (instead of sending empty array when nothing found)
+- handle POST requests (ignore authentication for now)
+- better filtering (search description using keywords)
+- expand into full fledged api worth selling? (would require a lot more data)
